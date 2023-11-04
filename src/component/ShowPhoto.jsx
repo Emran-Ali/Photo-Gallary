@@ -1,36 +1,90 @@
-// import React from 'react';
-import '../App.css'
-import PhotoItem from './PhotoItem'
+import React, { useState } from "react";
+import PhotoMap from "./PhotoMap";
 
 function ShowPhoto() {
-    const photo = ['image-1.webp', 'image-2.webp', 'image-3.webp', 'image-4.webp', 'image-5.webp', 'image-6.webp', 'image-7.webp', 'image-8.webp', 'image-9.webp', 'image-10.webp', 'image-11.webp'];
+    const data = ['image-1.webp', 'image-2.webp', 'image-3.webp', 'image-4.webp', 'image-5.webp',
+        'image-6.webp', 'image-7.webp', 'image-8.webp', 'image-9.webp', 'image-10.webp', 'image-11.webp']
+    const [photo, setPhoto] = useState([...data]);
+    const [checked, setChecked] = useState([]);
+
+
+    const handleCheckboxChange = (event) => {
+
+        const newChecked = [...checked];
+        if (event.target.checked) {
+            newChecked.push(event.target.value);
+        }
+        else {
+            const index = newChecked.indexOf(event.target.value);
+            newChecked.splice(index, 1);
+        }
+
+
+        setChecked(newChecked);
+        console.log(checked);
+    };
+
+    const handleDelete = () => {
+        const newPhoto = photo.filter((_, ind) => !checked.includes(ind.toString()));
+        setPhoto(newPhoto);
+        setChecked([]);
+
+    }
+    const checkedCount = checked.length;
+
+
+
     return (
         <>
-            <div className='m-3 p-2'>
-                <div className='container p-3'>
-                    <div>
-                        <h1 disabled={true}>Gallary</h1>
-                        {/* <div disabled={false} className='' >file selected</div> */}
+            <div className='bg-white rounded-md w-full h-full'>
+                <div className='w-full flex py-3 px-5 h-16 items-center justify-between'>
+                    <div className="flex flex-row">
+                        {checkedCount > 0 ? (
+                            <>
+                                <input className="px-4" type="checkbox" checked />
+                                <p className="font-semibold" >
+                                    {checkedCount} {checkedCount > 1 ? " Files" : "File"} Selected
+                                </p>
+                            </>
+                        ) : (
+                            <>
+                                <h3 className="text-3xl font-semibold">Gallary</h3>
+                            </>
+                        )}
                     </div>
-                    <div>
-                        <button disabled={false} >Delete file</button>
+                    <div >
+                        {checkedCount > 0 && <button onClick={handleDelete} className="text-red-500 font-semibold"
+                        >Delete {checkedCount > 1 ? " Files" : "File"}</button>
+                        }
+
                     </div>
                 </div>
                 <hr />
-                <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl-grid-cols-5 gap-4 w-full p-3'>
+                <br />
+
+
+                <div className="p-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 w-full">
                     {
-                        photo.map((name, index) => {
-                            return (
-                                <PhotoItem key={index} id={index} name={name} />
-                            )
-                        })
+
+                        <PhotoMap
+                            photo={photo}
+                            checked={checked}
+                            handleCheckboxChange={handleCheckboxChange}
+                        />
                     }
-
-
+                    <label
+                        htmlFor="fileUpload"
+                        className="border-dashed w-full h-full min-w-[130px] min-h-[200px]  border-2 rounded-lg overflow-hidden cursor-pointer">
+                        <div className="w-full h-full flex justify-center items-center flex-col space-y-2 hover:bg-gray-200">
+                            <img src="images/imgLogo.png" alt="icon" className="max-w-[35px]" />
+                            <div className="text-sm text-gray-500">Add Files</div>
+                        </div>
+                        <input type="file" className="hidden " id="fileUpload" />
+                    </label>
                 </div>
             </div>
         </>
-    )
+    );
 }
 
-export default ShowPhoto
+export default ShowPhoto;

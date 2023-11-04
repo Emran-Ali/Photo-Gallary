@@ -3,7 +3,12 @@ import ShowPhoto from './component/ShowPhoto';
 
 function App() {
   return (
-    <ShowPhoto />
+
+    <div className="w-full  overflow-x-hidden min-h-screen flex items-center justify-center bg-amber-50">
+      <div className="max-w-7xl mx-auto py-10 ">
+        <ShowPhoto />
+      </div>
+    </div>
   );
 }
 
