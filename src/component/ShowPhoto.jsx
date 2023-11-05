@@ -7,7 +7,7 @@ function ShowPhoto() {
     const [photo, setPhoto] = useState([...data]);
     const [checked, setChecked] = useState([]);
 
-
+    //selected photo handle
     const handleCheckboxChange = (event) => {
 
         const newChecked = [...checked];
@@ -24,6 +24,7 @@ function ShowPhoto() {
         console.log(checked);
     };
 
+    //handle delete button click
     const handleDelete = () => {
         const newPhoto = photo.filter((_, ind) => !checked.includes(ind.toString()));
 
@@ -38,7 +39,7 @@ function ShowPhoto() {
 
     return (
         <>
-            <div className='bg-white rounded-md w-full h-full'>
+            <div className='bg-white rounded-md w-full h-full bg-green-100 '>
                 <div className='w-full flex py-3 px-5 h-16 items-center justify-between'>
                     <div className="flex flex-row">
                         {checkedCount > 0 ? (

@@ -1,8 +1,11 @@
 import React from 'react'
 
 function PhotoCard({ indx, item, checked, handleCheckboxChange }) {
+
+    //check photo selecte or not
     const isChecked = checked.includes(indx.toString());
     return (
+        //photo grid
         <div className={` ${indx === 0 ? 'large min-h-80' : 'small'} ${isChecked ? "brightness-75" : ""} rounded-2xl hover:brightness-50`}>
             <div className={`border rounded-2xl overflow-hidden `}>
                 <div className='rounded-2xl overflow-hidden shadow relative group w-full h-full'>

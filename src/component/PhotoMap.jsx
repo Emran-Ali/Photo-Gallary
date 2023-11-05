@@ -6,10 +6,12 @@ function PhotoMap({ checked, photo, handleCheckboxChange }) {
 
     const [dndPhoto, setDndPhoto] = useState(photo);
 
+    //handle photo list when delete photo
     useEffect(() => {
         setDndPhoto(photo);
     }, [photo]);
 
+    //handle drug and drop photo to reordered
     function handleOnDragEnd(result) {
         if (!result.destination) return;
         const item = Array.from(dndPhoto);
@@ -28,6 +30,7 @@ function PhotoMap({ checked, photo, handleCheckboxChange }) {
                     <div className="p-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 w-full"
                         {...provider.droppableProps} ref={provider.innerRef} >
                         {
+                            //set all photo to grid
                             dndPhoto.map((item, indx) => {
                                 return (
                                     <Draggable key={indx} draggableId={indx.toString()} index={indx}>
