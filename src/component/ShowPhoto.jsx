@@ -26,7 +26,9 @@ function ShowPhoto() {
 
     const handleDelete = () => {
         const newPhoto = photo.filter((_, ind) => !checked.includes(ind.toString()));
+
         setPhoto(newPhoto);
+
         setChecked([]);
 
     }
@@ -63,7 +65,7 @@ function ShowPhoto() {
                 <br />
 
 
-                <div className="p-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 w-full">
+                <div >
                     {
 
                         <PhotoMap
@@ -74,7 +76,7 @@ function ShowPhoto() {
                     }
                     <label
                         htmlFor="fileUpload"
-                        className="border-dashed w-full h-full min-w-[130px] min-h-[200px]  border-2 rounded-lg overflow-hidden cursor-pointer">
+                        className="grid border-dashed w-40 h-full min-w-[130px] min-h-[200px]  border-2 rounded-lg overflow-hidden cursor-pointer ml-4">
                         <div className="w-full h-full flex justify-center items-center flex-col space-y-2 hover:bg-gray-200">
                             <img src="images/imgLogo.png" alt="icon" className="max-w-[35px]" />
                             <div className="text-sm text-gray-500">Add Files</div>
