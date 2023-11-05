@@ -51,7 +51,7 @@ function ShowPhoto() {
                             </>
                         ) : (
                             <>
-                                <h3 className="text-3xl font-semibold">Gallary</h3>
+                                <h3 className="text-3xl font-semibold">Gallery</h3>
                             </>
                         )}
                     </div>
